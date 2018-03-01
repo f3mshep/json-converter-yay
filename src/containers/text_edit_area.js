@@ -1,24 +1,14 @@
 import React from 'react';
 
-class TextEditArea extends React.Component{
-  constructor(props){
-    super(props);
 
-    this.state = {value: ""};
-    this.handleChange = this.handleChange.bind(this);
-  }
+const TextEditArea = (props) => (
 
-  handleChange(event){
-    this.setState({
-      value: event.target.value
-    })
-  };
+  <textarea
+   autoFocus
+   className="form-control my-area"
+   value={props.value}
+   onChange={props.handleChange} />
 
-  render(){
-    return(
-      <form>
-        <input type="text" value={this.state.value} onChange={this.handleChange} />
-      </form>
-    );
-  }
-}
+);
+
+export default TextEditArea;

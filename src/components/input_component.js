@@ -1,13 +1,22 @@
 import React from 'react';
-import TextEditArea from '../components/text_edit_area.js'
+import TextEditArea from '../containers/text_edit_area.js'
 import PrettyJSON from '../containers/pretty_json.js'
 
 class InputComponent extends React.Component{
   constructor(props){
     super(props);
     this.state={
-      editting: true
+      editting: true,
+      value: ""
     };
+
+    this.handleChange = this.handleChange.bind(this);
+  };
+
+  handleChange(event){
+    this.setState({
+      value: event.target.value
+    })
   };
 
   handleFocus(){
@@ -24,11 +33,16 @@ class InputComponent extends React.Component{
 
   render(){
     return(
-      <div  className="row justify-content-center">
-        <div onFocus={this.handleFocus} onBlur={this.handleBlur} className="container my-text-area">
-          {this.state.editting ? <TextEditArea/> : <PrettyJSON/>}
+      <div>
+        <div  className="row justify-content-center">
+          <div onClick={this.handleFocus.bind(this)} onBlur={this.handleBlur.bind(this)} className="col-md-7">
+            {this.state.editting ?
+            <TextEditArea value={this.state.value} handleChange={this.handleChange.bind(this)}/> : <PrettyJSON value={this.state.value}/>}
+          </div>
         </div>
-        <button className={'btn btn-priamry'}>Convert</button>
+        <div  className="row justify-content-center">
+          <div className="col-md-7"><button className='btn btn-lg btn-block btn-secondary'>Convert</button></div>
+        </div>
       </div>
     );
   };
