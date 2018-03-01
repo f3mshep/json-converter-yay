@@ -10,7 +10,6 @@ class App extends Component {
         <HeaderText text={"Paste" + <strong>JSON</strong> + "you want to be converted to CSV."}/>
         <InputComponent/>
         <InfoText text={"JSON Converter yay!"} myClass={'text-muted'}/>
-        <ConvertComponent/>
         <Footer/>
       </div>
     );
