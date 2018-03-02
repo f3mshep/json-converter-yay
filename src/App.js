@@ -7,6 +7,7 @@ import InputComponent from './components/input_component';
 import InfoText from './containers/info_text';
 import Footer from './containers/footer';
 import Spacer from './containers/spacer';
+import "react-json-pretty/JSONPretty.monikai.styl";
 
 class App extends Component {
   render() {

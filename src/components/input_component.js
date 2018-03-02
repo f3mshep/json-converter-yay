@@ -35,13 +35,13 @@ class InputComponent extends React.Component{
     return(
       <div>
         <div  className="row justify-content-center">
-          <div onClick={this.handleFocus.bind(this)} onBlur={this.handleBlur.bind(this)} className="col-md-7">
+          <div onClick={this.handleFocus.bind(this)} onBlur={this.handleBlur.bind(this)} className="col-md-8">
             {this.state.editting ?
             <TextEditArea value={this.state.value} handleChange={this.handleChange.bind(this)}/> : <PrettyJSON value={this.state.value}/>}
           </div>
         </div>
         <div  className="row justify-content-center">
-          <div className="col-md-7"><button className='btn btn-lg btn-block btn-secondary'>Convert</button></div>
+          <div className="col-md-8"><button className='btn btn-lg btn-block btn-secondary'>Convert</button></div>
         </div>
       </div>
     );
