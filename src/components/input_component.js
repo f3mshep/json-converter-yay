@@ -1,7 +1,7 @@
 import React from 'react';
 import TextEditArea from '../containers/text_edit_area.js';
 import PrettyJSON from '../containers/pretty_json.js';
-import jsonexport from 'jsonexport'
+const Json2csvParser = require("json2csv").Parser;
 
 class InputComponent extends React.Component{
   constructor(props){
@@ -39,22 +39,24 @@ class InputComponent extends React.Component{
   }
 
   toCSV(items){
-    const that = this
-    let csv = jsonexport(items, function(err, csv) {
-      if(err){console.log(err)}
-      that.downloadCSV(csv)
-    });
-
+    const parser = new Json2csvParser({ flatten: true });
+    try {
+      let json = JSON.stringify(items);
+      debugger
+      const csv = parser.parse(json);
+    } catch (err){
+      console.log(err)
+    }
   }
 
   downloadCSV(results){
+    // Use JavaScript to Export your Data as CSV
+    // https://halistechnology.com/2015/05/28/use-javascript-to-export-your-data-as-csv/
     let filename = 'results'
     if (!results.match(/^data:text\/csv/i)) {
       results = "data:text/csv;charset=utf-8," + results;
     }
-
     const data = encodeURI(results)
-    debugger
     let link = document.createElement('a')
     link.setAttribute("href", data);
     link.setAttribute("download", filename);
