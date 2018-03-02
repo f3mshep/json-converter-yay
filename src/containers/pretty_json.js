@@ -7,7 +7,7 @@ import { docco } from "react-syntax-highlighter/styles/hljs";
 // import { stringify } from 'querystring';
 class PrettyJSON extends React.Component {
   render(){
-    return <div className="my-area"><JSONPretty themeClassName="docco" json={this.props.value} /></div>;
+    return <div className="my-area"><JSONPretty json={this.props.value} /></div>;
   }
 
     // constructor(props){
