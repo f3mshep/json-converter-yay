@@ -39,19 +39,22 @@ class InputComponent extends React.Component{
   }
 
   toCSV(items){
-    return jsonexport(items, function(err, csv) {
-      if (err) return console.log(err);
-      return csv
+    const that = this
+    let csv = jsonexport(items, function(err, csv) {
+      if(err){console.log(err)}
+      that.downloadCSV(csv)
     });
+
   }
 
   downloadCSV(results){
     let filename = 'results'
     if (!results.match(/^data:text\/csv/i)) {
-      let results = "data:text/csv;charset=utf-8," + results;
+      results = "data:text/csv;charset=utf-8," + results;
     }
 
     const data = encodeURI(results)
+    debugger
     let link = document.createElement('a')
     link.setAttribute("href", data);
     link.setAttribute("download", filename);
@@ -61,7 +64,6 @@ class InputComponent extends React.Component{
   convertJSON(){
     let items = this.parseStateToJSON()
     let results = this.toCSV(items)
-
   }
 
   render(){
