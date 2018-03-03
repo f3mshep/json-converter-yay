@@ -76,37 +76,67 @@ function extractHeaders(flatObj){
   return headers;
 }
 
-function toCSV(flatObj){
-  headers = extractHeaders(flatObj);
+function toCSV(objects){
+  jsonArr = toJsonArr(objects);
+  flatObj = flattenObj(jsonArr);
+  rows = extractRows(flatObj);
+  headers = extractHeaders(rows);
+  return finalPass(rows, headers);
+}
 
+function findHeader(key){
+  return key.replace(/\d+\//, "");
+}
+
+function findIndex(key){
+  return key.split('/')[0]
 }
 
 function extractRows(flatObj){
-  let rows = [], index, rowHash
+  let rows = [], index, rowHash;
   for(let key in flatObj){
-    index = findIndex(key)
-    header = findHeader(key)
+    index = findIndex(key);
+    header = findHeader(key);
     if (rows[index]){
-      rowHash = rows[index]
-      rowHash[header] = flatObj[key]
+      rowHash = rows[index];
+      rowHash[header] = flatObj[key];
     }
     else {
-      rows[index] = {}
-      rowHash = rows[index]
-      rowHash[header] = flatObj[key]
+      rows[index] = {};
+      rowHash = rows[index];
+      rowHash[header] = flatObj[key];
     }
   }
-  return rows
+  return rows;
 }
 
 function extractHeaders(rows){
-  let count = 0, longest, currentRow
+  let count = 0, longest, currentRow;
   for(let rowKey in rows){
-    currentRow = rows[rowKey]
+    currentRow = rows[rowKey];
     if(Object.keys(currentRow).length > count){
-      count = Object.keys(currentRow).length
-      longest = currentRow
+      count = Object.keys(currentRow).length;
+      longest = currentRow;
     }
   }
-  return Object.keys(longest)
+  return Object.keys(longest);
 }
+
+
+function finalPass(rows, headers){
+  final = headers.join(',');
+  for(let rowHash of rows){
+    final = final + "\n";
+    for(let header of headers){
+      if (rowHash[header]){
+        final = final + rowHash[header] + ',';
+      }
+      else {
+        final = final + ',';
+      }
+    }
+  }
+  return final;
+}
+
+export default toCSV;

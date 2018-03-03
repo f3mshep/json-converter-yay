@@ -1,6 +1,7 @@
 import React from 'react';
 import TextEditArea from '../containers/text_edit_area.js';
 import PrettyJSON from '../containers/pretty_json.js';
+import toCSV from '../include/json_to_csv';
 const Json2csvParser = require("json2csv").Parser;
 
 class InputComponent extends React.Component{
@@ -39,14 +40,7 @@ class InputComponent extends React.Component{
   }
 
   toCSV(items){
-    const parser = new Json2csvParser({ flatten: true });
-    try {
-      let json = JSON.stringify(items);
-      debugger
-      const csv = parser.parse(json);
-    } catch (err){
-      console.log(err)
-    }
+
   }
 
   downloadCSV(results){
