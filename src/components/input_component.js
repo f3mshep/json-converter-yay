@@ -39,10 +39,6 @@ class InputComponent extends React.Component{
     return JSON.parse(this.state.value);
   }
 
-  toCSV(items){
-
-  }
-
   downloadCSV(results){
     // Use JavaScript to Export your Data as CSV
     // https://halistechnology.com/2015/05/28/use-javascript-to-export-your-data-as-csv/
@@ -52,14 +48,17 @@ class InputComponent extends React.Component{
     }
     const data = encodeURI(results)
     let link = document.createElement('a')
+    console.log('json is ready')
+    console.log(data)
     link.setAttribute("href", data);
     link.setAttribute("download", filename);
     link.click();
   }
 
   convertJSON(){
-    let items = this.parseStateToJSON()
-    let results = this.toCSV(items)
+    let items = this.parseStateToJSON();
+    let results = toCSV(items);
+    this.downloadCSV(results);
   }
 
   render(){

@@ -32,7 +32,7 @@ function toJsonArr(json) {
   while(queue){
     if(myType(next)==='array' && next.length > 0){
       lookahead = next[0];
-      if (myType(lookahead)=== 'array' || myType(lookahead) == 'object' ) return next;
+      if (myType(lookahead)=== 'array' || myType(lookahead) === 'object' ) return next;
     }
     else if(myType(next)==='object'){
       for(let key in next){
@@ -55,32 +55,21 @@ function flattenObj(obj, loc){
       let more_data = flattenObj(obj[key], loc + key + "/")
       data = mergeDeep(data, more_data)
     }
-    return data
+    return data;
   }
   else{
-    data = {}
-    endLoc = loc.substring(0, loc.length - 1)
-    data[endLoc] = obj
-    return data
+    let data = {}
+    let endLoc = loc.substring(0, loc.length - 1)
+    data[endLoc] = obj;
+    return data;
   }
-}
-
-function extractHeaders(flatObj){
-  let header;
-  let headers = {}
-  for(let key in flatObj){
-    header = flatObj[key];
-    header.replace(/.\d\//, "");
-    headers[header] = true;
-  }
-  return headers;
 }
 
 function toCSV(objects){
-  jsonArr = toJsonArr(objects);
-  flatObj = flattenObj(jsonArr);
-  rows = extractRows(flatObj);
-  headers = extractHeaders(rows);
+  const jsonArr = toJsonArr(objects);
+  const flatObj = flattenObj(jsonArr);
+  const rows = extractRows(flatObj);
+  const headers = extractHeaders(rows);
   return finalPass(rows, headers);
 }
 
@@ -93,10 +82,10 @@ function findIndex(key){
 }
 
 function extractRows(flatObj){
-  let rows = [], index, rowHash;
+  let rows = [], rowHash;
   for(let key in flatObj){
-    index = findIndex(key);
-    header = findHeader(key);
+    const index = findIndex(key);
+    const header = findHeader(key);
     if (rows[index]){
       rowHash = rows[index];
       rowHash[header] = flatObj[key];
@@ -124,7 +113,7 @@ function extractHeaders(rows){
 
 
 function finalPass(rows, headers){
-  final = headers.join(',');
+  let final = headers.join(',');
   for(let rowHash of rows){
     final = final + "\n";
     for(let header of headers){
