@@ -1,3 +1,4 @@
+const DELIMITER = "___";
 
 function isObject(item) {
   return (item && typeof item === 'object' && !Array.isArray(item));
@@ -54,14 +55,14 @@ function flattenObj(obj, loc){
   if(isObject(obj) || Array.isArray(obj)){
     let data = {}
     for(let key in obj){
-      let more_data = flattenObj(obj[key], loc + key + "/")
-      data = mergeDeep(data, more_data)
+      let more_data = flattenObj(obj[key], loc + key + DELIMITER);
+      data = mergeDeep(data, more_data);
     }
     return data;
   }
   else{
     let data = {}
-    let endLoc = loc.substring(0, loc.length - 1)
+    let endLoc = loc.substring(0, loc.length - DELIMITER.length);
     data[endLoc] = obj;
     return data;
   }
@@ -70,17 +71,18 @@ function flattenObj(obj, loc){
 function toCSV(objects){
   const jsonArr = toJsonArr(objects);
   const flatObj = flattenObj(jsonArr);
+  debugger
   const rows = extractRows(flatObj);
   const headers = extractHeaders(rows);
   return finalPass(rows, headers);
 }
 
 function findHeader(key){
-  return key.replace(/\d+\//, "");
+  return key.replace(/\d+___/, "");
 }
 
 function findIndex(key){
-  return key.split('/')[0]
+  return key.split(DELIMITER)[0];
 }
 
 function stripNewline(str){
