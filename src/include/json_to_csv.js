@@ -81,20 +81,20 @@ function findIndex(key){
   return key.split('/')[0]
 }
 
+function stripNewline(str){
+  return str.replace(/\r?\n|\r/g, "");
+}
+
 function extractRows(flatObj){
   let rows = [], rowHash;
   for(let key in flatObj){
     const index = findIndex(key);
     const header = findHeader(key);
-    if (rows[index]){
-      rowHash = rows[index];
-      rowHash[header] = flatObj[key];
-    }
-    else {
+    if (rows[index] === undefined){
       rows[index] = {};
-      rowHash = rows[index];
-      rowHash[header] = flatObj[key];
     }
+    rowHash = rows[index];
+    rowHash[header] = stripNewline(flatObj[key]);
   }
   return rows;
 }
