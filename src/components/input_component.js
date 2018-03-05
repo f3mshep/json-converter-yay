@@ -2,7 +2,6 @@ import React from 'react';
 import TextEditArea from '../containers/text_edit_area.js';
 import PrettyJSON from '../containers/pretty_json.js';
 import toCSV from '../include/json_to_csv';
-const Json2csvParser = require("json2csv").Parser;
 
 class InputComponent extends React.Component{
   constructor(props){
