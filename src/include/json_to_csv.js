@@ -8,7 +8,8 @@ function myType(obj){
 }
 
 
-//cite stack overflow
+// Deep merge implementation in vanilla JS
+// https://stackoverflow.com/questions/38777297/how-to-use-extend-in-vanilla-js
 function mergeDeep(target, ...sources) {
   if (!sources.length) return target;
   const source = sources.shift();
@@ -45,7 +46,8 @@ function toJsonArr(json) {
 
 function flattenObj(obj, loc){
   //flatten array using depth first recursive approach
-  //inspired by
+  //inspired by https://github.com/onyxfish/csvkit/blob/61b9c208b7665c20e9a8e95ba6eee811d04705f0/csvkit/convert/js.py#L15-L34
+
   if (loc === undefined){
     loc = ""
   }

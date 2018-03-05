@@ -40,6 +40,9 @@ class InputComponent extends React.Component{
   }
 
   downloadCSV(results){
+    // Use JSON to Export your data as CSV
+    // https://halistechnology.com/2015/05/28/use-javascript-to-export-your-data-as-csv/
+    // Cross browser fix suggested by Piotr Supłat 
     let link;
     if (results == null) return;
     
