@@ -42,7 +42,7 @@ class InputComponent extends React.Component{
   downloadCSV(results){
     // Use JavaScript to Export your Data as CSV
     // https://halistechnology.com/2015/05/28/use-javascript-to-export-your-data-as-csv/
-    let filename = 'results'
+    let filename = 'results.csv'
     if (!results.match(/^data:text\/csv/i)) {
       results = "data:text/csv;charset=utf-8," + results;
     }

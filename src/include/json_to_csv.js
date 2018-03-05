@@ -82,7 +82,9 @@ function findIndex(key){
 }
 
 function stripNewline(str){
-  return str.replace(/\r?\n|\r/g, "");
+  if (typeof str === "string"){
+    return str.replace(/\r?\n|\r/g, "");
+  }
 }
 
 function extractRows(flatObj){
