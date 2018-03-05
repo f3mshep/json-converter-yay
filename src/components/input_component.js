@@ -40,19 +40,30 @@ class InputComponent extends React.Component{
   }
 
   downloadCSV(results){
-    // Use JavaScript to Export your Data as CSV
-    // https://halistechnology.com/2015/05/28/use-javascript-to-export-your-data-as-csv/
-    let filename = 'results.csv'
-    if (!results.match(/^data:text\/csv/i)) {
-      results = "data:text/csv;charset=utf-8," + results;
+    let link;
+    if (results == null) return;
+    
+    const filename = 'results.csv';
+    
+    var blob = new Blob([results], {type: "text/csv;charset=utf-8;"});
+    
+    if (navigator.msSaveBlob){ 
+      // IE 10+
+      navigator.msSaveBlob(blob, filename)
     }
-    const data = encodeURI(results)
-    let link = document.createElement('a')
-    console.log('json is ready')
-    console.log(data)
-    link.setAttribute("href", data);
-    link.setAttribute("download", filename);
-    link.click();
+    else {
+      link = document.createElement("a");
+      if (link.download !== undefined){
+        // feature detection, Browsers that support HTML5 download attribute
+        let url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", filename);
+        link.style = "visibility:hidden";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    }
   }
 
   convertJSON(){
