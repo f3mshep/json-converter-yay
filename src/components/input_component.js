@@ -2,6 +2,7 @@ import React from 'react';
 import TextEditArea from '../containers/text_edit_area.js';
 import PrettyJSON from '../containers/pretty_json.js';
 import toCSV from '../include/json_to_csv';
+import Spacer from '../containers/spacer';
 
 class InputComponent extends React.Component{
   constructor(props){
@@ -83,6 +84,7 @@ class InputComponent extends React.Component{
             <TextEditArea value={this.state.value} handleChange={this.handleChange.bind(this)}/> : <PrettyJSON value={this.state.value}/>}
           </div>
         </div>
+        <div className="row"><Spacer size={"xs-sm"}/></div>
         <div  className="row justify-content-center">
           <div className="col-md-8"><button onClick={this.convertJSON.bind(this)} className='btn btn-lg btn-block btn-secondary'>Convert</button></div>
         </div>
