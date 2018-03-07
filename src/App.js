@@ -13,13 +13,15 @@ class App extends Component {
     return (
       <div>
         <HeaderBar/>
-        <Spacer size={"md"}/>
-        <HeaderText text={"Paste JSON you want to be converted to CSV"}/>
-        <Spacer size={"sm"}/>
-        <InputComponent/>
-        <Spacer size={"sm"}/>
-        <InfoText text={"JSON Converter yay!"} myClass={'text-muted'}/>
-        <Spacer/>
+        <div className="container-fluid">
+          <Spacer size={"md"}/>
+          <HeaderText text={"Paste JSON you want to be converted to CSV"}/>
+          <Spacer size={"sm"}/>
+          <InputComponent/>
+          <Spacer size={"sm"}/>
+          <InfoText text={"JSON Converter yay!"} myClass={'text-muted'}/>
+          <Spacer/>
+        </div>
         <Footer/>
       </div>
     );
