@@ -3,6 +3,7 @@ import TextEditArea from '../containers/text_edit_area.js';
 import PrettyJSON from '../containers/pretty_json.js';
 import toCSV from '../include/json_to_csv';
 import Spacer from '../containers/spacer';
+import FileDropzone from './dropzone';
 
 class InputComponent extends React.Component{
   constructor(props){
@@ -42,15 +43,15 @@ class InputComponent extends React.Component{
   downloadCSV(results){
     // Use JSON to Export your data as CSV
     // https://halistechnology.com/2015/05/28/use-javascript-to-export-your-data-as-csv/
-    // Cross browser fix suggested by Piotr Supłat 
+    // Cross browser fix suggested by Piotr Supłat
     let link;
     if (results == null) return;
-    
+
     const filename = 'results.csv';
-    
+
     var blob = new Blob([results], {type: "text/csv;charset=utf-8;"});
-    
-    if (navigator.msSaveBlob){ 
+
+    if (navigator.msSaveBlob){
       // IE 10+
       navigator.msSaveBlob(blob, filename)
     }
@@ -78,12 +79,15 @@ class InputComponent extends React.Component{
   render(){
     return(
       <div>
-        <div  className="row justify-content-center">
-          <div onClick={this.handleFocus.bind(this)} onBlur={this.handleBlur.bind(this)} className="col-md-8">
-            {this.state.editting ?
-            <TextEditArea value={this.state.value} handleChange={this.handleChange.bind(this)}/> : <PrettyJSON value={this.state.value}/>}
+          <div  className="row justify-content-center">
+
+            <div onClick={this.handleFocus.bind(this)} onBlur={this.handleBlur.bind(this)} className="col-md-8">
+              <FileDropzone>
+                  {this.state.editting ?
+                  <TextEditArea value={this.state.value} handleChange={this.handleChange.bind(this)}/> : <PrettyJSON value={this.state.value}/>}
+              </FileDropzone>
+            </div>
           </div>
-        </div>
         <div className="row"><Spacer size={"xs-sm"}/></div>
         <div  className="row justify-content-center">
           <div className="col-md-8"><button onClick={this.convertJSON.bind(this)} className='btn btn-lg btn-block btn-secondary'>Convert</button></div>
