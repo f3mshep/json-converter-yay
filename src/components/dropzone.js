@@ -11,11 +11,13 @@ class FileDropzone extends React.Component{
 
   handleDrop(acceptedFiles, rejectedFiles){
     const file = acceptedFiles[0];
+    //cleans up file preview URL to prevent memory leaks
     window.URL.revokeObjectURL(file.preview)
     if (file.name.split('.').slice(-1)[0].toLowerCase() !== "json"){
-      throw "File must be .json";
+      alert("Files must have .json extension")
+    } else {
+      this.props.handleFile(file)
     }
-    this.props.handleFile(file)
   }
 
   render(){
