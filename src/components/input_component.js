@@ -22,6 +22,18 @@ class InputComponent extends React.Component{
     })
   };
 
+  handleFile(file) {
+    const that = this;
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      that.setState({
+        value: event.target.result,
+        editting: false
+      })
+    };
+    reader.readAsText(file);
+  }
+
   handleFocus(){
     this.setState({
       editting: true
@@ -82,7 +94,7 @@ class InputComponent extends React.Component{
           <div  className="row justify-content-center">
 
             <div onClick={this.handleFocus.bind(this)} onBlur={this.handleBlur.bind(this)} className="col-md-8">
-              <FileDropzone>
+              <FileDropzone handleFile={this.handleFile.bind(this)}>
                   {this.state.editting ?
                   <TextEditArea value={this.state.value} handleChange={this.handleChange.bind(this)}/> : <PrettyJSON value={this.state.value}/>}
               </FileDropzone>
