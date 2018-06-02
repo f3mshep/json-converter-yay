@@ -5,8 +5,10 @@ const Footer = props => (
     <div className="container-fluid">
       <div className="row">
         <div className="col-md-4">
-          <span className="copyright">
-            Copyright &copy; Alexandra Wright 2018
+          <span className="text-muted">
+            <p>
+              Created with <span style={{ color: "red" }}>&hearts;</span> by Alexandra Wright
+              </p>
           </span>
         </div>
         <div className="col-md-4">

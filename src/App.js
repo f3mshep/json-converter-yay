@@ -10,21 +10,18 @@ import "react-json-pretty/JSONPretty.monikai.styl";
 
 class App extends Component {
   render() {
-    return (
-      <div>
-        <HeaderBar/>
+    return <div>
+        <HeaderBar />
         <div className="container-fluid">
-          <Spacer size={"md"}/>
-          <HeaderText text={"Paste JSON you want to be converted to CSV"}/>
-          <Spacer size={"sm"}/>
-          <InputComponent/>
-          <Spacer size={"sm"}/>
-          <InfoText text={"JSON Converter yay!"} myClass={'text-muted'}/>
-          <Spacer/>
+          <Spacer size={"md"} />
+          <HeaderText text={"Paste or drag JSON you want converted to CSV"} />
+          <Spacer size={"sm"} />
+          <InputComponent />
+          <Spacer size={"sm"} />
+          <InfoText text={"Max file size: 100 mb"} myClass={"text-muted"} />
         </div>
-        <Footer/>
-      </div>
-    );
+        <Footer />
+      </div>;
   }
 }
 

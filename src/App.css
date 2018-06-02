@@ -52,6 +52,29 @@ pre {
     color: rgba(75,174,22,1);
   }
 
+/********* Bootstrappy Stuff *************/
+
+.forced-focus-off {
+  outline: 0;
+  background-color: transparent;
+  color: transparent;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.forced-focus {
+  color: #495057;
+  background-color: #fff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(73, 80, 87, 0.2);
+  border-radius: 0.2em;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  transition: all 0.2s;
+}
+/*********   ************/
+
 footer {
   padding: 25px 0;
   text-align: center;
