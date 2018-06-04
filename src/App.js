@@ -7,11 +7,13 @@ import InfoText from './containers/info_text';
 import Footer from './containers/footer';
 import Spacer from './containers/spacer';
 import "react-json-pretty/JSONPretty.monikai.styl";
+import Modal from './components/modal/modal';
 
 class App extends Component {
   render() {
     return <div>
         <HeaderBar />
+        <Modal>Test</Modal>
         <div className="container-fluid">
           <Spacer size={"md"} />
           <HeaderText text={"Paste or drag JSON you want converted to CSV"} />

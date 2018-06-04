@@ -92,7 +92,6 @@ class InputComponent extends React.Component{
     return(
       <div>
           <div  className="row justify-content-center">
-
             <div onClick={this.handleFocus.bind(this)} onBlur={this.handleBlur.bind(this)} className="col-md-8">
               <FileDropzone handleFile={this.handleFile.bind(this)}>
                   {this.state.editting ?
