@@ -31,7 +31,11 @@ class InputComponent extends React.Component{
         editting: false
       })
     };
-    reader.readAsText(file);
+    try {
+      reader.readAsText(file);
+    } catch (error) {
+      this.props.renderModal("Error reading file")
+    }
   }
 
   handleFocus(){
@@ -93,7 +97,7 @@ class InputComponent extends React.Component{
       <div>
           <div  className="row justify-content-center">
             <div onClick={this.handleFocus.bind(this)} onBlur={this.handleBlur.bind(this)} className="col-md-8">
-              <FileDropzone handleFile={this.handleFile.bind(this)}>
+              <FileDropzone renderModal={this.props.renderModal} handleFile={this.handleFile.bind(this)}>
                   {this.state.editting ?
                   <TextEditArea value={this.state.value} handleChange={this.handleChange.bind(this)}/> : <PrettyJSON value={this.state.value}/>}
               </FileDropzone>

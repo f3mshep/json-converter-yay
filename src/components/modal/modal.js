@@ -1,30 +1,31 @@
 import React from 'react';
 import Overlay from './overlay';
-import ModalComponent from './modal_component';
+import ModalContainer from './modal_container'
 
 class Modal extends React.Component{
-  constructor(props){
-    super(props)
-
-  }
 
   toggleModal(){
-
+    if(this.state.modalShowing){
+      this.setState({modalShowing: false})
+    } else {
+      const that = this;
+      setTimeout(() => {
+        that.setState({modalShowing: true})
+      }, 100);
+    }
   }
 
   render(){
-    return(
-      <Overlay isShowing={this.props.isShowing} toggleCallback={this.props.toggleCallback}>
-        <ModalComponent isShowing={this.props.isShowing} toggleCallback={this.props.Callback} >
+    if(this.props.isShowing){
+      return <Overlay isShowing={this.props.isShowing} toggleCallback={this.props.toggleCallback}>
+        <ModalContainer isShowing={this.props.isShowing} toggleCallback={this.props.toggleCallback}>
           {this.props.children}
-        </ModalComponent>
-      </Overlay>
-    );
+        </ModalContainer>
+      </Overlay>;
+    } else {
+      return null;
+    }
   };
-
-  //overlay props: isShowing, toggleCallback
-    //modal_component props: isShowing, toggleCallback
-      //this.props.children
 }
 
 export default Modal;

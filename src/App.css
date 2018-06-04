@@ -77,6 +77,24 @@ pre {
 
 /******** Modal Stuff *********/
 
+.button .close {
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  -webkit-appearance: none;
+}
+
+.close {
+    margin-top: 6px;
+    float: right;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+}
+
 .customModal {
   position: fixed;
   top: 0;
@@ -86,14 +104,35 @@ pre {
   z-index: 1050;
   overflow: hidden;
   outline: 0;
-}
-
-.customModal.fade {
-  transition: -webkit-transform 0.3s ease-out;
-  transition: transform 0.3s ease-out;
-  transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+  max-width: 500px;
+  margin: 1.75rem auto;
+  transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out;
   -webkit-transform: translate(0, -25%);
   transform: translate(0, -25%);
+}
+
+.customContent{
+  margin: 1.75rem auto;
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: .3rem;
+  outline: 0;
+  overflow: hidden;
+}
+
+.customModalBody {
+  position: relative;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1rem;
 }
 
 .customModal.show {
