@@ -53,7 +53,12 @@ class InputComponent extends React.Component{
   };
 
   parseStateToJSON(){
-    return JSON.parse(this.state.value);
+    try {
+      return JSON.parse(this.state.value);
+    } catch (error) {
+      throw new Error("Unable to parse JSON")
+    }
+
   }
 
   downloadCSV(results){
@@ -87,9 +92,15 @@ class InputComponent extends React.Component{
   }
 
   convertJSON(){
-    let items = this.parseStateToJSON();
-    let results = toCSV(items);
-    this.downloadCSV(results);
+    let items;
+    try {
+      items = this.parseStateToJSON();
+      let results = toCSV(items);
+      this.downloadCSV(results);
+    } catch (error) {
+      this.props.renderModal("Unable to parse JSON")
+      return null;
+    }
   }
 
   render(){
