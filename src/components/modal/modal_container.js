@@ -24,7 +24,7 @@ class ModalContainer extends React.Component{
 
   render(){
     return(
-      <ModalComponent toggleCallback={this.props.toggleCallback} isShowing={this.state.isShowing}>
+      <ModalComponent header={this.props.header} toggleCallback={this.props.toggleCallback} isShowing={this.state.isShowing}>
         {this.props.children}
       </ModalComponent>
     );

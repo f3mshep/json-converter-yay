@@ -18,7 +18,7 @@ class Modal extends React.Component{
   render(){
     if(this.props.isShowing){
       return <Overlay isShowing={this.props.isShowing} toggleCallback={this.props.toggleCallback}>
-        <ModalContainer isShowing={this.props.isShowing} toggleCallback={this.props.toggleCallback}>
+        <ModalContainer header={'Oops!'} isShowing={this.props.isShowing} toggleCallback={this.props.toggleCallback}>
           {this.props.children}
         </ModalContainer>
       </Overlay>;
