@@ -71,7 +71,6 @@ function flattenObj(obj, loc){
 function toCSV(objects){
   const jsonArr = toJsonArr(objects);
   const flatObj = flattenObj(jsonArr);
-  debugger
   const rows = extractRows(flatObj);
   const headers = extractHeaders(rows);
   return finalPass(rows, headers);
