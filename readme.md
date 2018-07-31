@@ -11,7 +11,7 @@ Clone the repo, then simply install dependencies and start a development instanc
   npm install
   npm start
 ```
-A live version is available at (here!)[http://alexandrawright.net]
+A live version is available at [here!](http://alexandrawright.net)
 
 ## Contributing
 
